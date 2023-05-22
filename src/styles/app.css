@@ -1,0 +1,7 @@
+.oj-web-applayout-header-title strong {
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    color: rgb(22, 21, 19);
+    font-weight: normal;
+    margin-right: .25rem;
+}
