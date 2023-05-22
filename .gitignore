@@ -16,6 +16,8 @@
 hybrid/plugins/*
 !hybrid/plugins/fetch.json
 
+package-lock.json
+
 .DS_Store
 Thumbs.db
-/.idea
+.idea
