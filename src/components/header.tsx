@@ -5,12 +5,18 @@ import "ojs/ojbutton";
 import { StarWarsPropsType } from "./app-types";
 import Navigation from "./navigation";
 
-export default function Header({ appName, appSubname, loggedUser, page }: StarWarsPropsType) {
+type Props = StarWarsPropsType & {
+  onHamburgerClicked: () => void;
+};
+
+export default function Header({ appName, appSubname, loggedUser, page, onHamburgerClicked }: Props) {
   return (
     <header role="banner" class="oj-web-applayout-header">
       <div class="oj-flex-bar oj-sm-align-items-center">
         <div class="oj-flex-bar-start">
-          <oj-button display="icons" chroming="borderless"><span slot="startIcon" class="oj-ux-ico-menu" /></oj-button>
+          <oj-button display="icons" chroming="borderless" onojAction={onHamburgerClicked}>
+            <span slot="startIcon" class="oj-ux-ico-menu" />
+          </oj-button>
         </div>
         <div class="oj-flex-bar-middle oj-sm-align-items-baseline">
           <h1 class="oj-sm-only-hide oj-web-applayout-header-title" title={`${appName} ${appSubname}`}>
