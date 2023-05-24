@@ -1,0 +1,658 @@
+[
+  {
+    "Name": "Luke Skywalker",
+    "Gender": "male",
+    "Homeworld": "Tatooine",
+    "Born": "19BBY",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:56.891000Z"
+  },
+  {
+    "Name": "C-3PO",
+    "Gender": "n/a",
+    "Homeworld": "Tatooine",
+    "Born": "112BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.309000Z"
+  },
+  {
+    "Name": "R2-D2",
+    "Gender": "n/a",
+    "Homeworld": "Naboo",
+    "Born": "33BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.311000Z"
+  },
+  {
+    "Name": "Darth Vader",
+    "Gender": "male",
+    "Homeworld": "Tatooine",
+    "Born": "41.9BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.313000Z"
+  },
+  {
+    "Name": "Leia Organa",
+    "Gender": "female",
+    "Homeworld": "Alderaan",
+    "Born": "19BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.315000Z"
+  },
+  {
+    "Name": "Owen Lars",
+    "Gender": "male",
+    "Homeworld": "Tatooine",
+    "Born": "52BBY",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.317000Z"
+  },
+  {
+    "Name": "Beru Whitesun lars",
+    "Gender": "female",
+    "Homeworld": "Tatooine",
+    "Born": "47BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.319000Z"
+  },
+  {
+    "Name": "R5-D4",
+    "Gender": "n/a",
+    "Homeworld": "Tatooine",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.321000Z"
+  },
+  {
+    "Name": "Biggs Darklighter",
+    "Gender": "male",
+    "Homeworld": "Tatooine",
+    "Born": "24BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.323000Z"
+  },
+  {
+    "Name": "Obi-Wan Kenobi",
+    "Gender": "male",
+    "Homeworld": "Stewjon",
+    "Born": "57BBY",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.325000Z"
+  },
+  {
+    "Name": "Anakin Skywalker",
+    "Gender": "male",
+    "Homeworld": "Tatooine",
+    "Born": "41.9BBY",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.327000Z"
+  },
+  {
+    "Name": "Wilhuff Tarkin",
+    "Gender": "male",
+    "Homeworld": "Eriadu",
+    "Born": "64BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.330000Z"
+  },
+  {
+    "Name": "Chewbacca",
+    "Gender": "male",
+    "Homeworld": "Kashyyyk",
+    "Born": "200BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.332000Z"
+  },
+  {
+    "Name": "Han Solo",
+    "Gender": "male",
+    "Homeworld": "Corellia",
+    "Born": "29BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.334000Z"
+  },
+  {
+    "Name": "Greedo",
+    "Gender": "male",
+    "Homeworld": "Rodia",
+    "Born": "44BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.336000Z"
+  },
+  {
+    "Name": "Jabba Desilijic Tiure",
+    "Gender": "hermaphrodite",
+    "Homeworld": "Nal Hutta",
+    "Born": "600BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.338000Z"
+  },
+  {
+    "Name": "Wedge Antilles",
+    "Gender": "male",
+    "Homeworld": "Corellia",
+    "Born": "21BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.341000Z"
+  },
+  {
+    "Name": "Jek Tono Porkins",
+    "Gender": "male",
+    "Homeworld": "Bestine IV",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.343000Z"
+  },
+  {
+    "Name": "Yoda",
+    "Gender": "male",
+    "Homeworld": "unknown",
+    "Born": "896BBY",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.345000Z"
+  },
+  {
+    "Name": "Palpatine",
+    "Gender": "male",
+    "Homeworld": "Naboo",
+    "Born": "82BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.347000Z"
+  },
+  {
+    "Name": "Boba Fett",
+    "Gender": "male",
+    "Homeworld": "Kamino",
+    "Born": "31.5BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.349000Z"
+  },
+  {
+    "Name": "IG-88",
+    "Gender": "none",
+    "Homeworld": "unknown",
+    "Born": "15BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.351000Z"
+  },
+  {
+    "Name": "Bossk",
+    "Gender": "male",
+    "Homeworld": "Trandosha",
+    "Born": "53BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.355000Z"
+  },
+  {
+    "Name": "Lando Calrissian",
+    "Gender": "male",
+    "Homeworld": "Socorro",
+    "Born": "31BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.357000Z"
+  },
+  {
+    "Name": "Lobot",
+    "Gender": "male",
+    "Homeworld": "Bespin",
+    "Born": "37BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.359000Z"
+  },
+  {
+    "Name": "Ackbar",
+    "Gender": "male",
+    "Homeworld": "Mon Cala",
+    "Born": "41BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.362000Z"
+  },
+  {
+    "Name": "Mon Mothma",
+    "Gender": "female",
+    "Homeworld": "Chandrila",
+    "Born": "48BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.364000Z"
+  },
+  {
+    "Name": "Arvel Crynyd",
+    "Gender": "male",
+    "Homeworld": "unknown",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.367000Z"
+  },
+  {
+    "Name": "Wicket Systri Warrick",
+    "Gender": "male",
+    "Homeworld": "Endor",
+    "Born": "8BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.369000Z"
+  },
+  {
+    "Name": "Nien Nunb",
+    "Gender": "male",
+    "Homeworld": "Sullust",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.371000Z"
+  },
+  {
+    "Name": "Qui-Gon Jinn",
+    "Gender": "male",
+    "Homeworld": "unknown",
+    "Born": "92BBY",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.375000Z"
+  },
+  {
+    "Name": "Nute Gunray",
+    "Gender": "male",
+    "Homeworld": "Cato Neimoidia",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.377000Z"
+  },
+  {
+    "Name": "Finis Valorum",
+    "Gender": "male",
+    "Homeworld": "Coruscant",
+    "Born": "91BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.379000Z"
+  },
+  {
+    "Name": "Padmé Amidala",
+    "Gender": "female",
+    "Homeworld": "Naboo",
+    "Born": "46BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.381000Z"
+  },
+  {
+    "Name": "Jar Jar Binks",
+    "Gender": "male",
+    "Homeworld": "Naboo",
+    "Born": "52BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.383000Z"
+  },
+  {
+    "Name": "Roos Tarpals",
+    "Gender": "male",
+    "Homeworld": "Naboo",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.385000Z"
+  },
+  {
+    "Name": "Rugor Nass",
+    "Gender": "male",
+    "Homeworld": "Naboo",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.388000Z"
+  },
+  {
+    "Name": "Ric Olié",
+    "Gender": "male",
+    "Homeworld": "Naboo",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.392000Z"
+  },
+  {
+    "Name": "Watto",
+    "Gender": "male",
+    "Homeworld": "Toydaria",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.395000Z"
+  },
+  {
+    "Name": "Sebulba",
+    "Gender": "male",
+    "Homeworld": "Malastare",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.397000Z"
+  },
+  {
+    "Name": "Quarsh Panaka",
+    "Gender": "male",
+    "Homeworld": "Naboo",
+    "Born": "62BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.399000Z"
+  },
+  {
+    "Name": "Shmi Skywalker",
+    "Gender": "female",
+    "Homeworld": "Tatooine",
+    "Born": "72BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.401000Z"
+  },
+  {
+    "Name": "Darth Maul",
+    "Gender": "male",
+    "Homeworld": "Dathomir",
+    "Born": "54BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.403000Z"
+  },
+  {
+    "Name": "Bib Fortuna",
+    "Gender": "male",
+    "Homeworld": "Ryloth",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.407000Z"
+  },
+  {
+    "Name": "Ayla Secura",
+    "Gender": "female",
+    "Homeworld": "Ryloth",
+    "Born": "48BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.409000Z"
+  },
+  {
+    "Name": "Ratts Tyerel",
+    "Gender": "male",
+    "Homeworld": "Aleen Minor",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.410000Z"
+  },
+  {
+    "Name": "Dud Bolt",
+    "Gender": "male",
+    "Homeworld": "Vulpter",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.414000Z"
+  },
+  {
+    "Name": "Gasgano",
+    "Gender": "male",
+    "Homeworld": "Troiken",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.416000Z"
+  },
+  {
+    "Name": "Ben Quadinaros",
+    "Gender": "male",
+    "Homeworld": "Tund",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.417000Z"
+  },
+  {
+    "Name": "Mace Windu",
+    "Gender": "male",
+    "Homeworld": "Haruun Kal",
+    "Born": "72BBY",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.420000Z"
+  },
+  {
+    "Name": "Ki-Adi-Mundi",
+    "Gender": "male",
+    "Homeworld": "Cerea",
+    "Born": "92BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.422000Z"
+  },
+  {
+    "Name": "Kit Fisto",
+    "Gender": "male",
+    "Homeworld": "Glee Anselm",
+    "Born": "unknown",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.424000Z"
+  },
+  {
+    "Name": "Eeth Koth",
+    "Gender": "male",
+    "Homeworld": "Iridonia",
+    "Born": "unknown",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.427000Z"
+  },
+  {
+    "Name": "Adi Gallia",
+    "Gender": "female",
+    "Homeworld": "Coruscant",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.432000Z"
+  },
+  {
+    "Name": "Saesee Tiin",
+    "Gender": "male",
+    "Homeworld": "Iktotch",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.434000Z"
+  },
+  {
+    "Name": "Yarael Poof",
+    "Gender": "male",
+    "Homeworld": "Quermia",
+    "Born": "unknown",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.437000Z"
+  },
+  {
+    "Name": "Plo Koon",
+    "Gender": "male",
+    "Homeworld": "Dorin",
+    "Born": "22BBY",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.439000Z"
+  },
+  {
+    "Name": "Mas Amedda",
+    "Gender": "male",
+    "Homeworld": "Champala",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.442000Z"
+  },
+  {
+    "Name": "Gregar Typho",
+    "Gender": "male",
+    "Homeworld": "Naboo",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.445000Z"
+  },
+  {
+    "Name": "Cordé",
+    "Gender": "female",
+    "Homeworld": "Naboo",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.449000Z"
+  },
+  {
+    "Name": "Cliegg Lars",
+    "Gender": "male",
+    "Homeworld": "Tatooine",
+    "Born": "82BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.451000Z"
+  },
+  {
+    "Name": "Poggle the Lesser",
+    "Gender": "male",
+    "Homeworld": "Geonosis",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.453000Z"
+  },
+  {
+    "Name": "Luminara Unduli",
+    "Gender": "female",
+    "Homeworld": "Mirial",
+    "Born": "58BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.455000Z"
+  },
+  {
+    "Name": "Barriss Offee",
+    "Gender": "female",
+    "Homeworld": "Mirial",
+    "Born": "40BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.457000Z"
+  },
+  {
+    "Name": "Dormé",
+    "Gender": "female",
+    "Homeworld": "Naboo",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.460000Z"
+  },
+  {
+    "Name": "Dooku",
+    "Gender": "male",
+    "Homeworld": "Serenno",
+    "Born": "102BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.462000Z"
+  },
+  {
+    "Name": "Bail Prestor Organa",
+    "Gender": "male",
+    "Homeworld": "Alderaan",
+    "Born": "67BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.463000Z"
+  },
+  {
+    "Name": "Jango Fett",
+    "Gender": "male",
+    "Homeworld": "Concord Dawn",
+    "Born": "66BBY",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.465000Z"
+  },
+  {
+    "Name": "Zam Wesell",
+    "Gender": "female",
+    "Homeworld": "Zolan",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.468000Z"
+  },
+  {
+    "Name": "Dexter Jettster",
+    "Gender": "male",
+    "Homeworld": "Ojom",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.470000Z"
+  },
+  {
+    "Name": "Lama Su",
+    "Gender": "male",
+    "Homeworld": "Kamino",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.473000Z"
+  },
+  {
+    "Name": "Taun We",
+    "Gender": "female",
+    "Homeworld": "Kamino",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.474000Z"
+  },
+  {
+    "Name": "Jocasta Nu",
+    "Gender": "female",
+    "Homeworld": "Coruscant",
+    "Born": "unknown",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.476000Z"
+  },
+  {
+    "Name": "R4-P17",
+    "Gender": "female",
+    "Homeworld": "unknown",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.478000Z"
+  },
+  {
+    "Name": "Wat Tambor",
+    "Gender": "male",
+    "Homeworld": "Skako",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.481000Z"
+  },
+  {
+    "Name": "San Hill",
+    "Gender": "male",
+    "Homeworld": "Muunilinst",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.484000Z"
+  },
+  {
+    "Name": "Shaak Ti",
+    "Gender": "female",
+    "Homeworld": "Shili",
+    "Born": "unknown",
+    "Jedi": "yes",
+    "Created": "2014-12-20T21:17:50.486000Z"
+  },
+  {
+    "Name": "Grievous",
+    "Gender": "male",
+    "Homeworld": "Kalee",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.488000Z"
+  },
+  {
+    "Name": "Tarfful",
+    "Gender": "male",
+    "Homeworld": "Kashyyyk",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.491000Z"
+  },
+  {
+    "Name": "Raymus Antilles",
+    "Gender": "male",
+    "Homeworld": "Alderaan",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.493000Z"
+  },
+  {
+    "Name": "Sly Moore",
+    "Gender": "female",
+    "Homeworld": "Umbara",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.496000Z"
+  },
+  {
+    "Name": "Tion Medon",
+    "Gender": "male",
+    "Homeworld": "Utapau",
+    "Born": "unknown",
+    "Jedi": "no",
+    "Created": "2014-12-20T21:17:50.498000Z"
+  }
+]
