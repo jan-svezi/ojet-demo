@@ -1,4 +1,5 @@
 import Navigation from "../navigation";
+import Page from "./page";
 
 import "ojs/ojdrawerpopup";
 
@@ -12,7 +13,7 @@ type Props = {
 export default function ContentLayout({ page, drawerTitle, drawerOpened, onDrawerClosed }: Props) {
     return (
         <div>
-            content
+            <Page page={page} />
 
             <div>
                 <oj-drawer-popup opened={drawerOpened}
