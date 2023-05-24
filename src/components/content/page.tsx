@@ -7,7 +7,7 @@ type Props = {
 
 export default function Page({ page }: Props) {
     return (
-        <div>
+        <div class="oj-web-applayout-content-nopad oj-web-applayout-content">
             {page === "battle" && <Battle />}
             {page === "characters" && <Characters />}
         </div>
