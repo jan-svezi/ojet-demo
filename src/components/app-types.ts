@@ -5,13 +5,13 @@ export type StarWarsPropsType = {
     page: string;
 };
 
-type RouteDescription = {
+type RouteDescriptionType = {
     label: string;
     icon: string;
 }
 
 export type RouteType = {
     path: string;
-    detail?: RouteDescription;
+    detail?: RouteDescriptionType;
     redirect?: string;
 }
