@@ -63,9 +63,38 @@ app.get("/", (req, res) => {
 });
 
 app.get("/star-wars", (req, res) => {
-    const characters = fs.readJsonSync(DATA_PATH);
+    let characters = fs.readJsonSync(DATA_PATH);
+
     const offset = parseInt(req.query.offset || 0);
     const limit = parseInt(req.query.limit || characters.length);
+    const filter = req.query.filter;
+    const sortBy = req.query.sortBy;
+
+    if (filter) {
+        const filterText = filter.toLowerCase();
+        characters = characters.filter(item => item.Name.toLowerCase().includes(filterText) ||
+            item.Homeworld.toLowerCase().includes(filterText));
+    }
+
+    if (sortBy) {
+        const sortCriteria = sortBy.split(",").map(column => {
+            return { direction: column[0], attribute: column.slice(1) }
+        });
+
+        characters = characters.sort((a, b) => {
+            for (let i = 0; i < sortCriteria.length; i++) {
+                const criterion = sortCriteria[i];
+
+                if (a[criterion.attribute].localeCompare(b[criterion.attribute]) !== 0) {
+                    return criterion.direction === "+" ?
+                        a[criterion.attribute].localeCompare(b[criterion.attribute]) :
+                        b[criterion.attribute].localeCompare(a[criterion.attribute]);
+                }
+            }
+
+            return 0;
+        });
+    }
 
     res.send({
         totalSize: characters.length,
