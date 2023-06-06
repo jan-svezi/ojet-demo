@@ -5,3 +5,7 @@
     font-weight: normal;
     margin-right: .25rem;
 }
+
+.table-sizing.full-height {
+    height: calc(100vh - 125px);
+}
