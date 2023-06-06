@@ -6,3 +6,8 @@ export type CharacterAPIType = {
     Jedi: string;
     Created: string;
 };
+
+export type CharacterType = CharacterAPIType & {
+    Created: Date;
+    Greeting: string;
+};
