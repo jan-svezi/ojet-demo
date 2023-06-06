@@ -72,6 +72,29 @@ export default function Characters() {
             cell.row.Gender === "female" ? <span className="oj-ux-ico-female" /> : <span className="oj-ux-ico-male" />,
         []);
 
+    const handleCharacterDelete = useCallback((name: string) => {
+        if (confirm("Oooooh! Looks like the Force wasn't with you on this one!")) {
+            (async () => {
+                const request = new Request(API_ENDPOINT + '/' + name, {
+                    headers: new Headers({
+                        "Content-type": "application/json; charset=UTF-8"
+                    }),
+                    method: "DELETE"
+                });
+
+                const response: CharacterAPIType = await (await fetch(request)).json();
+
+                restDataProvider.mutate({
+                    remove: {
+                        data: [loadCharacter(response)],
+                        keys: new Set([response.Name]),
+                        metadata: [{key: response.Name}]
+                    }
+                });
+            })();
+        }
+    }, []);
+
     const renderActionColumn = useCallback((cell: ojTable.CellTemplateContext<CharacterType["Name"], CharacterType>) => {
         const handleEdit = (event: ojButton.ojAction) => {
             event.detail.originalEvent.stopPropagation();
@@ -80,7 +103,7 @@ export default function Characters() {
 
         const handleDelete = (event: ojButton.ojAction) => {
             event.detail.originalEvent.stopPropagation();
-            console.log('delete', cell.row);
+            handleCharacterDelete(cell.row.Name);
         };
 
         return [
