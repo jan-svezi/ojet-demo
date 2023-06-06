@@ -15,7 +15,7 @@ const setColumnsDefault: TableProps["columnsDefault"] = { sortable: "disabled" }
 const columns: TableProps["columns"] = [
     { headerText: "Greeting", field: "Greeting" },
     { headerText: "Name", field: "Name" },
-    { headerText: "Gender", field: "Gender", template: "genderTemplate" },
+    { headerText: "Gender", template: "genderTemplate" },
     { headerText: "Homeworld", field: "Homeworld" },
     { headerText: "Born", field: "Born" },
     { headerText: "Is jedi?", field: "Jedi" },
