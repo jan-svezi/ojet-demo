@@ -1,11 +1,13 @@
 import { ComponentProps } from "preact";
-import { useMemo, useCallback } from "preact/hooks";
+import { useState, useMemo, useCallback, useRef, MutableRef, useEffect } from "preact/hooks";
 
 import { ojTable } from "ojs/ojtable";
 import { ojButton } from "ojs/ojbutton";
+import { ojDialog } from "ojs/ojdialog";
 
 import "ojs/ojtable";
 import "ojs/ojbutton";
+import "ojs/ojdialog";
 
 import { CharacterAPIType, CharacterType } from "./characters-types";
 
@@ -35,6 +37,13 @@ const columns: TableProps["columns"] = [
 const API_ENDPOINT: Readonly<string> = "http://localhost:3333/star-wars";
 
 export default function Characters() {
+    const dialogRef = useRef<ojDialog>();
+    const [dialogOpened, setDialogOpened] = useState<"show" | "hide" | undefined>("hide");
+
+    useEffect(() => {
+        dialogOpened === "show" ? dialogRef.current?.open() : dialogRef.current?.close();
+    }, [dialogOpened]);
+
     const loadCharacter = useCallback((character: CharacterAPIType): CharacterType => {
         return {
             ...character,
@@ -68,6 +77,11 @@ export default function Characters() {
             }
         }
     }), []);
+
+    const handleCharacterChanged = useCallback((event: ojTable.firstSelectedRowChanged<CharacterType["Name"], CharacterType>) => {
+        setDialogOpened("show");
+        console.log('show', event.detail.value.data);
+    }, []);
 
     const renderGenderColumn = useCallback((cell: ojTable.CellTemplateContext<CharacterType["Name"], CharacterType>) =>
             cell.row.Gender === "female" ? <span className="oj-ux-ico-female" /> : <span className="oj-ux-ico-male" />,
@@ -118,10 +132,6 @@ export default function Characters() {
         ];
     }, []);
 
-    const handleCharacterChanged = useCallback((event: ojTable.firstSelectedRowChanged<CharacterType["Name"], CharacterType>) => {
-        console.log('show', event.detail.value.data);
-    }, []);
-
     return (
         <div className="oj-flex">
             <oj-table
@@ -137,6 +147,22 @@ export default function Characters() {
                 <template slot="genderTemplate" render={renderGenderColumn} />
                 <template slot="actionTemplate" render={renderActionColumn} />
             </oj-table>
+
+            <div>
+                <oj-dialog dialog-title="Modal Dialog"
+                           aria-describedby="desc"
+                           ref={dialogRef as MutableRef<ojDialog>}>
+                    <div slot="body">
+                        <p id="desc">
+                            This is the dialog content. User can change dialog resize behavior, cancel behavior and drag
+                            behavior by setting attributes. Default attribute value depends on the theme.
+                        </p>
+                    </div>
+                    <div slot="footer">
+                        <oj-button id="okButton">OK</oj-button>
+                    </div>
+                </oj-dialog>
+            </div>
         </div>
     );
 }
