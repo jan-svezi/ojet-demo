@@ -15,6 +15,7 @@ type TableProps = ComponentProps<"oj-table">;
 
 const setColumnsDefault: TableProps["columnsDefault"] = { sortable: "disabled" };
 const setSelectionMode: TableProps["selectionMode"] = { row: "single", column: "none" };
+const setScrollPolicy: TableProps["scrollPolicyOptions"] = { fetchSize: 10, maxCount: 500 };
 
 const columns: TableProps["columns"] = [
     { headerText: "Greeting", field: "Greeting" },
@@ -128,6 +129,8 @@ export default function Characters() {
                 data={restDataProvider}
                 columnsDefault={setColumnsDefault}
                 selectionMode={setSelectionMode}
+                scrollPolicy="loadMoreOnScroll"
+                scrollPolicyOptions={setScrollPolicy}
                 columns={columns}
                 onfirstSelectedRowChanged={handleCharacterChanged}
                 class="oj-bg-body table-sizing oj-flex-item full-height">
