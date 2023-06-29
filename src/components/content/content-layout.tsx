@@ -1,19 +1,25 @@
-import Navigation from "../navigation";
-import Page from "./page";
+import { h } from "preact";
 
 import "ojs/ojdrawerpopup";
 
+import Navigation from "../navigation";
+import Page from "./page";
+
+
 type Props = {
     page: string;
+    setActionArea: (element: h.JSX.Element) => void;
+    onPageChanged: (value: string) => void;
     drawerTitle: string;
     drawerOpened: boolean;
     onDrawerClosed: () => void;
+    isMediaSM: boolean;
 }
 
-export default function ContentLayout({ page, drawerTitle, drawerOpened, onDrawerClosed }: Props) {
+export default function ContentLayout({ page, drawerTitle, setActionArea, onPageChanged, drawerOpened, onDrawerClosed, isMediaSM }: Props) {
     return (
         <div>
-            <Page page={page} />
+            <Page page={page} isMediaSM={isMediaSM} setActionArea={setActionArea} />
 
             <div>
                 <oj-drawer-popup opened={drawerOpened}
@@ -26,7 +32,7 @@ export default function ContentLayout({ page, drawerTitle, drawerOpened, onDrawe
                         </oj-button>
                     </h5>
 
-                    <Navigation page={page} edge="start"/>
+                    <Navigation page={page} onPageChanged={onPageChanged} displayType="all" edge="start" />
                 </oj-drawer-popup>
             </div>
         </div>

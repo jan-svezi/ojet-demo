@@ -1,17 +1,29 @@
-import { ComponentProps } from "preact";
-import { useState, useMemo, useCallback, useRef, MutableRef, useEffect } from "preact/hooks";
+import { h } from "preact";
 
+import { ComponentProps } from "preact";
+import { useState, useEffect, useMemo, useCallback, MutableRef } from "preact/hooks";
+
+import { KeySet, KeySetImpl } from "ojs/ojkeyset";
+
+import { ojDialog } from "ojs/ojdialog";
 import { ojTable } from "ojs/ojtable";
 import { ojButton } from "ojs/ojbutton";
-import { ojDialog } from "ojs/ojdialog";
+import { InputSearchElement } from "ojs/ojinputsearch";
 
+import "ojs/ojdialog";
 import "ojs/ojtable";
 import "ojs/ojbutton";
-import "ojs/ojdialog";
+import "ojs/ojinputsearch";
 
-import { CharacterAPIType, CharacterType } from "./characters-types";
+import CharacterDialog from "./character-dialog";
+
+import { CharacterAPIType, CharacterType, CharacterActionType } from "./characters-types";
 
 import { RESTDataProvider } from "ojs/ojrestdataprovider";
+import ListDataProviderView = require("ojs/ojlistdataproviderview");
+import { FilterFactory, TextFilter, SortCriterion } from 'ojs/ojdataprovider';
+
+const API_ENDPOINT: Readonly<string> = "http://localhost:3333/star-wars";
 
 type TableProps = ComponentProps<"oj-table">;
 
@@ -21,11 +33,11 @@ const setScrollPolicy: TableProps["scrollPolicyOptions"] = { fetchSize: 10, maxC
 
 const columns: TableProps["columns"] = [
     { headerText: "Greeting", field: "Greeting" },
-    { headerText: "Name", field: "Name" },
+    { headerText: "Name", field: "Name", sortable: "enabled" },
     { headerText: "Gender", template: "genderTemplate" },
-    { headerText: "Homeworld", field: "Homeworld" },
+    { headerText: "Homeworld", field: "Homeworld", sortable: "enabled" },
     { headerText: "Born", field: "Born" },
-    { headerText: "Is jedi?", field: "Jedi" },
+    { headerText: "Is jedi?", field: "Jedi", sortable: "enabled" },
     { headerText: "Created", field: "Created", renderer: (cell) => {
         return {
             insert: cell.row.Created.toLocaleDateString()
@@ -34,24 +46,46 @@ const columns: TableProps["columns"] = [
     { headerText: "", template: "actionTemplate" }
 ];
 
-const API_ENDPOINT: Readonly<string> = "http://localhost:3333/star-wars";
+// types
+type Props = {
+    isMediaSM: boolean;
+    setActionArea: (element: h.JSX.Element) => void;
+};
 
-export default function Characters() {
-    const dialogRef = useRef<ojDialog>();
-    const [dialogOpened, setDialogOpened] = useState<"show" | "hide" | undefined>("hide");
+export default function Characters({ isMediaSM, setActionArea }: Props) {
+    const [selectedCharacter, setSelectedCharacter] = useState<{ row?: KeySet<CharacterType["Name"]> }>();
+    const [selectedCharacterData, setSelectedCharacterData] = useState<Partial<CharacterType>>({});
+    const [isDialogOpened, setIsDialogOpened] = useState<boolean>(false);
+    const [showDetail, setShowDetail] = useState<boolean>(true);
+    const [newCharacter, setNewCharacter] = useState<boolean>(false);
+    const [filter, setFilter] = useState<string>("");
 
+    // set section area and handle filtering the table
     useEffect(() => {
-        dialogOpened === "show" ? dialogRef.current?.open() : dialogRef.current?.close();
-    }, [dialogOpened]);
+        const handleValueChanged = (event: InputSearchElement.rawValueChanged<string, string>) => {
+            setFilter(event.detail.value as string);
+        };
 
+        setActionArea(
+            <oj-form-layout class="oj-md-width-1/2 oj-sm-width-full" columns={2} direction="row">
+                <oj-input-search placeholder="Search character" value={filter} onrawValueChanged={handleValueChanged} />
+                <oj-button display={isMediaSM ? "icons" : "all"} onojAction={handleCharacterAdd}>
+                    Add character <span slot="endIcon" className="oj-ux-ico-plus-circle" />
+                </oj-button>
+            </oj-form-layout>
+        );
+    }, [setActionArea, filter]);
+
+    // preprocessing of Star Wars character data
     const loadCharacter = useCallback((character: CharacterAPIType): CharacterType => {
         return {
             ...character,
             ...{ Created: new Date(character.Created),
-                 Greeting: character.Jedi === "yes" ? "May the force be with you..." : "Hi!" }
+                Greeting: character.Jedi === "yes" ? "May the force be with you..." : "Hi!" }
         } as CharacterType;
     }, []);
 
+    // initialize RESTDataProvider
     const restDataProvider: RESTDataProvider<CharacterAPIType["Name"], CharacterAPIType> = useMemo(() => new RESTDataProvider({
         keyAttributes: "Name",
         url: API_ENDPOINT,
@@ -64,6 +98,22 @@ export default function Characters() {
                     url.searchParams.set("limit", String(size));
                     url.searchParams.set("offset", String(offset));
 
+                    if (options.fetchParameters.filterCriterion) {
+                        const filterCriterion = options.fetchParameters.filterCriterion as TextFilter<CharacterAPIType>;
+                        if (filterCriterion.text && filterCriterion.text.length >= 2) {
+                            url.searchParams.set("filter", filterCriterion.text);
+                        }
+                    }
+
+                    if (options.fetchParameters.sortCriteria) {
+                        const sortCriteria = options.fetchParameters.sortCriteria as SortCriterion<CharacterAPIType>[];
+
+                        // ?sort_by=-last_modified,+email
+                        url.searchParams.set("sortBy", sortCriteria.map(
+                            column => `${column.direction === "ascending" ? "+" : "-"}${column.attribute}`
+                        ).join(","));
+                    }
+
                     return new Request(url.href);
                 },
                 response: async ({ body }) => {
@@ -72,20 +122,48 @@ export default function Characters() {
                         data: data.map((row: CharacterAPIType) => loadCharacter(row)),
                         totalSize,
                         hasMore
-                    };
+                    }
                 }
             }
         }
     }), []);
 
+    // initialize the wrapper of REST DP used to filter and sorting of the data
+    const dataProvider: ListDataProviderView<CharacterAPIType["Name"], CharacterAPIType,
+        CharacterAPIType["Name"], CharacterAPIType> = useMemo(() =>
+            new ListDataProviderView(restDataProvider, {
+                filterCriterion: filter ? FilterFactory.getFilter({ filterDef: { text: filter } }) : undefined
+            }),
+        [filter]
+    );
+
+    // handle row selection
     const handleCharacterChanged = useCallback((event: ojTable.firstSelectedRowChanged<CharacterType["Name"], CharacterType>) => {
-        setDialogOpened("show");
-        console.log('show', event.detail.value.data);
+        // in the case the drawer was closed, the selection was deselected
+        if (event.detail.value.key) {
+            setSelectedCharacterData(event.detail.value.data);
+            showDialog();
+        }
     }, []);
 
-    const renderGenderColumn = useCallback((cell: ojTable.CellTemplateContext<CharacterType["Name"], CharacterType>) =>
-            cell.row.Gender === "female" ? <span className="oj-ux-ico-female" /> : <span className="oj-ux-ico-male" />,
-        []);
+    // handle dialog visibility
+    const showDialog = useCallback((readonly: boolean = true) => {
+        setShowDetail(readonly);
+        setIsDialogOpened(true);
+    }, []);
+
+    const closeDialog = useCallback(() => {
+        setIsDialogOpened(false);
+        setSelectedCharacter({ row: new KeySetImpl([]) as KeySet<CharacterType["Name"]> });
+        setSelectedCharacterData({});
+        setNewCharacter(false);
+    }, []);
+
+    // handle other actions
+    const handleCharacterAdd = useCallback(() => {
+        setNewCharacter(true);
+        showDialog(false);
+    }, []);
 
     const handleCharacterDelete = useCallback((name: string) => {
         if (confirm("Oooooh! Looks like the Force wasn't with you on this one!")) {
@@ -110,59 +188,87 @@ export default function Characters() {
         }
     }, []);
 
+    const handleCharacterUpdate = useCallback((data: Partial<CharacterAPIType>, dialogRef: MutableRef<ojDialog>, isNew: boolean) => {
+        dialogRef.current?.close();
+
+        // send request and mutate data provider
+        (async () => {
+            const request = new Request(API_ENDPOINT, {
+                headers: new Headers({
+                    "Content-type": "application/json; charset=UTF-8",
+                }),
+                body: JSON.stringify(data),
+                method: isNew ? "POST" : "PUT",
+            });
+
+            // send request and get added/modified row
+            const response = await (await fetch(request)).json();
+
+            // call mutate method to send a mutate event to notify data provider consumer that data has been updated
+            if (isNew) {
+                restDataProvider.refresh();
+            } else {
+                // this is currently not working for add
+                restDataProvider.mutate({
+                    update: {
+                        data: [loadCharacter(response)],
+                        keys: new Set([response.Name]),
+                        metadata: [{ key: response.Name }],
+                    },
+                });
+            }
+        })();
+    }, []);
+
+    // columns renderers
+    const renderGenderColumn = useCallback((cell: ojTable.CellTemplateContext<CharacterType["Name"], CharacterType>) =>
+            cell.row.Gender === "female" ? <span className="oj-ux-ico-female" /> : <span className="oj-ux-ico-male" />,
+        []);
+
     const renderActionColumn = useCallback((cell: ojTable.CellTemplateContext<CharacterType["Name"], CharacterType>) => {
-        const handleEdit = (event: ojButton.ojAction) => {
-            event.detail.originalEvent.stopPropagation();
-            console.log('edit', cell.row);
-        };
-
-        const handleDelete = (event: ojButton.ojAction) => {
-            event.detail.originalEvent.stopPropagation();
-            handleCharacterDelete(cell.row.Name);
-        };
-
-        return [
-            <oj-button class="oj-button-sm" onojAction={handleEdit} display="icons">
-                <span slot="startIcon" className="oj-ux-ico-edit"></span> Edit
-            </oj-button>,
-
-            <oj-button class="oj-button-sm" onojAction={handleDelete} display="icons">
-                <span slot="startIcon" className="oj-ux-ico-delete-all"></span> Delete
-            </oj-button>
+        const actions: CharacterActionType[] = [
+            { action: "edit", label: "Edit", icon: "oj-ux-ico-edit", handler: (event: ojButton.ojAction) => {
+                    event.detail.originalEvent.stopPropagation();
+                    setSelectedCharacterData(cell.row);
+                    showDialog(false);
+                }},
+            { action: "delete", label: "Delete", icon: "oj-ux-ico-delete-all", handler: (event: ojButton.ojAction) => {
+                    event.detail.originalEvent.stopPropagation();
+                    handleCharacterDelete(cell.row.Name);
+                }}
         ];
+
+        // render actions
+        return actions.map((action: CharacterActionType) =>
+            <oj-button class="oj-button-sm" onojAction={action.handler} display="icons">
+                <span slot="startIcon" className={action.icon}></span> {action.label}
+            </oj-button>
+        );
     }, []);
 
     return (
         <div className="oj-flex">
             <oj-table
                 aria-label="Alerts"
-                data={restDataProvider}
-                columnsDefault={setColumnsDefault}
+                data={dataProvider}
+                selected={selectedCharacter}
                 selectionMode={setSelectionMode}
+                onfirstSelectedRowChanged={handleCharacterChanged}
                 scrollPolicy="loadMoreOnScroll"
                 scrollPolicyOptions={setScrollPolicy}
+                columnsDefault={setColumnsDefault}
                 columns={columns}
-                onfirstSelectedRowChanged={handleCharacterChanged}
                 class="oj-bg-body table-sizing oj-flex-item full-height">
                 <template slot="genderTemplate" render={renderGenderColumn} />
                 <template slot="actionTemplate" render={renderActionColumn} />
             </oj-table>
 
-            <div>
-                <oj-dialog dialog-title="Modal Dialog"
-                           aria-describedby="desc"
-                           ref={dialogRef as MutableRef<ojDialog>}>
-                    <div slot="body">
-                        <p id="desc">
-                            This is the dialog content. User can change dialog resize behavior, cancel behavior and drag
-                            behavior by setting attributes. Default attribute value depends on the theme.
-                        </p>
-                    </div>
-                    <div slot="footer">
-                        <oj-button id="okButton">OK</oj-button>
-                    </div>
-                </oj-dialog>
-            </div>
+            <CharacterDialog character={selectedCharacterData as CharacterType}
+                             readonly={showDetail}
+                             newCharacter={newCharacter}
+                             isOpened={isDialogOpened}
+                             onClose={closeDialog}
+                             onSubmit={handleCharacterUpdate} />
         </div>
     );
 }

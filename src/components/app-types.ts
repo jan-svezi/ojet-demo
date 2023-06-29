@@ -3,6 +3,7 @@ export type StarWarsPropsType = {
     appSubname: string;
     loggedUser: string;
     page: string;
+    isMediaSM: boolean;
 };
 
 type RouteDescriptionType = {

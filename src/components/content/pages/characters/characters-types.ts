@@ -1,3 +1,5 @@
+import { ojButton } from "ojs/ojbutton";
+
 export type CharacterAPIType = {
     Name: string;
     Gender: string;
@@ -10,4 +12,11 @@ export type CharacterAPIType = {
 export type CharacterType = CharacterAPIType & {
     Created: Date;
     Greeting: string;
+};
+
+export type CharacterActionType = {
+    action: string;
+    label: string;
+    icon: string;
+    handler: (event: ojButton.ojAction) => void;
 };
